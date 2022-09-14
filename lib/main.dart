@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             'Tarefa',
           ),
         ),
@@ -39,10 +39,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Task extends StatelessWidget {
+class Task extends StatefulWidget {
   final String task;
   const Task({Key? key, required this.task}) : super(key: key);
 
+  @override
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
+  int nivel = 0;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -54,32 +60,47 @@ class Task extends StatelessWidget {
               color: Colors.blue,
               height: 140,
             ),
-            Container(
-              color: Colors.white,
-              height: 100,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    color: Colors.black12,
-                    width: 72,
-                    height: 100,
+            Column(
+              children: [
+                Container(
+                  color: Colors.white,
+                  height: 100,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        color: Colors.black12,
+                        width: 72,
+                        height: 100,
+                      ),
+                      Container(
+                        width: 200,
+                        child: Text(
+                          widget.task,
+                          style: TextStyle(fontSize: 24),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              nivel++;
+                            });
+                          },
+                          child: Icon(
+                            Icons.arrow_drop_up,
+                          ))
+                    ],
                   ),
-                  Container(
-                    width: 200,
-                    child: Text(
-                      task,
-                      style: TextStyle(fontSize: 24),
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                ),
+                Text(
+                  "Nivel: $nivel",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
                   ),
-                  ElevatedButton(
-                      onPressed: () {},
-                      child: Icon(
-                        Icons.arrow_drop_up,
-                      ))
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),

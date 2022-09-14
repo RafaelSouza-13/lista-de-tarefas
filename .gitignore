@@ -9,6 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
+primeira_tela.dart
 
 # IntelliJ related
 *.iml
