@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
+          leading: Container(),
           title: const Text(
             'Tarefa',
           ),
@@ -81,15 +82,31 @@ class _TaskState extends State<Task> {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              nivel++;
-                            });
-                          },
-                          child: Icon(
-                            Icons.arrow_drop_up,
-                          ))
+                      Container(
+                        height: 52,
+                        width: 52,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                nivel++;
+                              });
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: const [
+                                Icon(
+                                  Icons.arrow_drop_up,
+                                ),
+                                Text(
+                                  "UP",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      )
                     ],
                   ),
                 ),
@@ -102,7 +119,7 @@ class _TaskState extends State<Task> {
                         width: 200,
                         child: LinearProgressIndicator(
                           color: Colors.white,
-                          backgroundColor: Colors.blueGrey,
+                          backgroundColor: Colors.blue[200],
                           value: nivel / 10,
                         ),
                       ),
